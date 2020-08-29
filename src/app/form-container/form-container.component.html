@@ -1,0 +1,17 @@
+<div [formGroup]="fg">
+    <ng-container *ngFor="let formField of formOptionsData.formFields">
+        <div>
+            <label [attr.for]="formField.name">{{formField.label}}</label>
+            <div [ngSwitch]="formField.controlType">
+                <input *ngSwitchCase="'text'" [formControlName]="formField.name" [id]="formField.name" type="text">
+                <select [id]="formField.name" *ngSwitchCase="'dropdown'" [formControlName]="formField.name">
+                    <option *ngFor="let opt of formField.options" [value]="opt.value">{{opt.displayText || opt.value}}</option>
+                </select>
+                <textarea *ngSwitchCase="'textarea'" [formControlName]="formField.name" [id]="formField.name" [rows]="formField.rows"></textarea>
+                <input *ngSwitchCase="'number'" [formControlName]="formField.name" [id]="formField.name" type="number">
+                <app-error-handling [control]="fg.controls[formField.name]" [formFieldData]="formField"></app-error-handling>
+            </div>
+        </div>
+    </ng-container>
+    <button type="submit" (click)="saveForm()">{{formOptionsData.submitButtonText}}</button>
+</div>

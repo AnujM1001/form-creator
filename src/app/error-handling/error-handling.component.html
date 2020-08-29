@@ -1,0 +1,12 @@
+<div class="errorMessage" *ngIf="control.hasError('required')">
+    {{formFieldData.label}} is required
+</div>
+<div class="errorMessage" *ngIf="control.hasError('min')">
+    {{formFieldData.label}} value should be greater than {{control.errors.min.min}}
+</div>
+<div class="errorMessage" *ngIf="control.hasError('max')">
+    {{formFieldData.label}} value should be less than {{control.errors.max.max}}
+</div>
+<div class="errorMessage" *ngIf="control.hasError('pattern')">
+    {{formFieldData.label}} invalid pattern
+</div>
